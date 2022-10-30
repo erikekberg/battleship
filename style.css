@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+button {
+  position: absolute;
+  height: 40px;
+  width: 80px;
+}
+
+h1 {
+  z-index: 99;
+}
+
+table:nth-child(1) {
+  grid-column: 1 / 2;
+  grid-row: 2 / -1;
+}
+
+table td {
+  height: 50px;
+  width: 50px;
+  border: 1px solid black;
+  text-align: center;
+}
+
+td:hover {
+  background-color: #777;
+}
+
+h1 {
+  position: absolute;
+  margin: auto;
+  top: 40%;
+  background-color: red;
+  font-size: 100px;
+}
