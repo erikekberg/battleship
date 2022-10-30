@@ -8,13 +8,13 @@ class GameBoard {
   }
 
   placeShipsRandomly(length) {
-    let randomX = Math.floor(Math.random() * 9);
-    let randomY = Math.floor(Math.random() * 9);
+    let randomX = Math.floor(Math.random() * 10);
+    let randomY = Math.floor(Math.random() * 10);
     let randomAxis = Math.random() >= 0.5 ? "x" : "y";
 
     while (!this.addShip(randomX, randomY, length, randomAxis)) {
-      randomX = Math.floor(Math.random() * 9);
-      randomY = Math.floor(Math.random() * 9);
+      randomX = Math.floor(Math.random() * 10);
+      randomY = Math.floor(Math.random() * 10);
       randomAxis = Math.random() >= 0.5 ? "x" : "y";
     }
   }

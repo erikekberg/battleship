@@ -1,9 +1,11 @@
 {
   "name": "battleship",
+  "homepage": "https://erikekberg.github.io/battleship",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "publish": "gh-pages -d dist",
     "test": "jest"
   },
   "repository": {
@@ -15,8 +17,8 @@
   "bugs": {
     "url": "https://github.com/erikekberg/battleship/issues"
   },
-  "homepage": "https://github.com/erikekberg/battleship#readme",
   "devDependencies": {
+    "gh-pages": "^4.0.0",
     "jest": "^28.1.3",
     "webpack-cli": "^4.10.0"
   }

@@ -8,6 +8,13 @@ let axis = "x";
 const gameOverText = document.createElement("h1");
 document.body.appendChild(gameOverText);
 
+const placeShipsText = document.createElement("h1");
+placeShipsText.textContent = "Place your ships";
+document.body.appendChild(placeShipsText);
+
+const attackOpponentText = document.createElement("h1");
+attackOpponentText.textContent = "Attack your opponent!";
+
 const changeAxisButton = document.createElement("button");
 changeAxisButton.textContent = "current axis: x";
 changeAxisButton.setAttribute("axis", "x");
@@ -40,6 +47,10 @@ for (let r = 0; r < domManager.playerTable.childNodes.length; r++) {
       () => {
         if (shipLength > 0) {
           placeShip(r, i);
+          if (shipLength <= 0) {
+            document.body.removeChild(placeShipsText);
+            document.body.appendChild(attackOpponentText);
+          }
         }
       }
     );
@@ -87,15 +98,15 @@ function attackComputer(x, y) {
     domManager.computerTable.childNodes[y].childNodes[x].style.backgroundColor =
       "red";
     if (game.computer.board.allShipsSunk()) {
-      console.log("game over");
+      document.body.removeChild(attackOpponentText);
       gameOverText.textContent = "Congratulations! You win";
     } else {
-      let randomX = Math.floor(Math.random() * 9);
-      let randomY = Math.floor(Math.random() * 9);
+      let randomX = Math.floor(Math.random() * 10);
+      let randomY = Math.floor(Math.random() * 10);
 
       while (hasBeenGuessed(randomX, randomY, game.player.board.guesses)) {
-        randomX = Math.floor(Math.random() * 9);
-        randomY = Math.floor(Math.random() * 9);
+        randomX = Math.floor(Math.random() * 10);
+        randomY = Math.floor(Math.random() * 10);
       }
 
       if (game.player.board.receiveAttack(randomX, randomY)) {
@@ -103,6 +114,7 @@ function attackComputer(x, y) {
           randomX
         ].style.backgroundColor = "red";
         if (game.player.board.allShipsSunk()) {
+          document.body.removeChild(attackOpponentText);
           gameOverText.textContent = "Oh no. The Computer won";
         }
       } else {
@@ -114,12 +126,12 @@ function attackComputer(x, y) {
   } else {
     domManager.computerTable.childNodes[y].childNodes[x].style.backgroundColor =
       "blue";
-    let randomX = Math.floor(Math.random() * 9);
-    let randomY = Math.floor(Math.random() * 9);
+    let randomX = Math.floor(Math.random() * 10);
+    let randomY = Math.floor(Math.random() * 10);
 
     while (hasBeenGuessed(randomX, randomY, game.player.board.guesses)) {
-      randomX = Math.floor(Math.random() * 9);
-      randomY = Math.floor(Math.random() * 9);
+      randomX = Math.floor(Math.random() * 10);
+      randomY = Math.floor(Math.random() * 10);
     }
 
     if (game.player.board.receiveAttack(randomX, randomY)) {
@@ -127,6 +139,7 @@ function attackComputer(x, y) {
         randomX
       ].style.backgroundColor = "red";
       if (game.player.board.allShipsSunk()) {
+        document.body.removeChild(attackOpponentText);
         gameOverText.textContent = "Oh no. The Computer won";
       }
     } else {
@@ -135,7 +148,6 @@ function attackComputer(x, y) {
       ].style.backgroundColor = "blue";
     }
   }
-  console.log(x, y, game.computer.board.guesses);
 }
 
 function placeShip(r, i) {
